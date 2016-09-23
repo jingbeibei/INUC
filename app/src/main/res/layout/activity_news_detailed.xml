@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".news.NewsDetailedActivity">
+
+    <include layout="@layout/toolbar_mybar"></include>
+
+    <TextView
+        android:id="@+id/news_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="标题"
+        android:background="#ffffff"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size" />
+
+    <WebView
+        android:id="@+id/news_content_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+</LinearLayout>

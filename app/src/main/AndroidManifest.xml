@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.inuc.inuc">
+
+    <!-- 允许联网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取手机状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 选择图片 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读取短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/newlogo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".main.personalcenter.ModifyDateActivity" />
+        <activity android:name=".main.personalcenter.ModifyPasswordActivity" />
+        <activity android:name=".main.setting.AboutActivity" />
+        <activity android:name=".news.NewsListActivity" />
+        <activity android:name=".news.NewsDetailedActivity" />
+        <activity android:name=".mailbox.ChiefMailboxActivity" />
+        <activity android:name=".mailbox.LetterDetailedActivity" />
+        <activity android:name=".mailbox.TabLayoutTopActivity" />
+        <activity android:name=".office.OfficeAutomationActivity" />
+        <activity android:name=".office.OADetailedActivity" />
+
+        <service android:name=".main.setting.receiver.UpdateService" />
+
+        <activity android:name=".news.PublishNewsActivity"></activity>
+    </application>
+
+</manifest>

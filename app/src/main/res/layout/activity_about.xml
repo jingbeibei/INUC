@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".main.setting.AboutActivity">
+
+    <ImageView
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dip"
+        android:src="@mipmap/newlogo" />
+
+    <TextView
+        android:id="@+id/guanyuVersionnameTv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:text="爱中北"
+        android:textSize="25dp" />
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="@dimen/text_size"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:text="
+我们的声明：\n
+1.保护用户个人信息是我们的一项基本原则。\n
+2.您在注册账号或使用本服务的过程中，可能需要填写一些必要的信息，
+这些信息主要是为了验证如找回密码功能等。若国家法律法规有
+特殊规定的，您需要填写真实身份信息。若您填写的信息不完整，则无法
+使用本服务或在使用过程中受到限制。\n
+3.一般情况下，您可随时浏览、修改自己的信息，但出于安全和身份识别
+（如号码申诉服务等）的考虑，您可能无法修改注册时提供的初始注册信
+息及其它验证信息。\n
+4.i-nuc将运用各种安全技术和程序建立完善的管理制度来保护您的个
+人信息，以避免遭受未经授权的访问、使用或披露。\n
+5.如有任何问题请与管理员联系。\n
+" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:textSize="@dimen/text_size"
+                android:text="爱中北技术部研发" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

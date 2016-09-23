@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".mailbox.WriteLetterActivity">
+    <include layout="@layout/toolbar_mybar" />
+
+    <EditText
+        android:id="@+id/letter_release_title_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login"
+        android:gravity="center"
+        android:hint="标题"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size" />
+
+    <EditText
+        android:id="@+id/letter_releasw_content_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login"
+        android:gravity="top|left"
+        android:hint="内容"
+        android:lines="6"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="@dimen/text_size" />
+
+
+
+    <Button
+        android:id="@+id/letter_release_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login_button"
+        android:text="提交"
+        android:textSize="@dimen/text_size" />
+</LinearLayout>
