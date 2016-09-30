@@ -22,6 +22,7 @@ import com.inuc.inuc.main.ImageSlideshow.ImageSlideshow;
 import com.inuc.inuc.news.NewsListActivity;
 import com.inuc.inuc.office.OfficeAutomationActivity;
 import com.inuc.inuc.utils.Urls;
+import com.inuc.inuc.zone.ZoneMainActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -44,6 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private Button newsBt;
     private Button principalMailboxBt;
     private Button officeAutomationBt;
+    private Button MicroSpaceBt;
 
 
 
@@ -147,9 +149,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         newsBt= (Button) view.findViewById(R.id.news_bt);
         principalMailboxBt= (Button) view.findViewById(R.id.principal_mailbox_bt);
         officeAutomationBt= (Button) view.findViewById(R.id.office_automation_bt);
+        MicroSpaceBt= (Button) view.findViewById(R.id.Micro_space_bt);
         principalMailboxBt.setOnClickListener(this);
         newsBt.setOnClickListener(this);
         officeAutomationBt.setOnClickListener(this);
+        MicroSpaceBt.setOnClickListener(this);
     }
 
     @Override
@@ -167,13 +171,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Intent intent=new Intent(getActivity(), NewsListActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.principal_mailbox_bt:
+            case R.id.principal_mailbox_bt://校长信箱
                 Intent boxIntent=new Intent(getActivity(), TabLayoutTopActivity.class);
                 startActivity(boxIntent);
                 break;
-            case R.id.office_automation_bt:
+            case R.id.office_automation_bt://OA
                 Intent oaIntent=new Intent(getActivity(), OfficeAutomationActivity.class);
                 startActivity(oaIntent);
+                break;
+            case R.id.Micro_space_bt://OA
+                Intent msIntent=new Intent(getActivity(), ZoneMainActivity.class);
+                startActivity(msIntent);
                 break;
         }
 

@@ -14,4 +14,8 @@
         <item name="colorAccent">#993300</item>
 
     </style>
+
+    <style name="Comment" parent="android:TextAppearance">
+        <item name="android:textSize">14dp</item>
+    </style>
 </resources>

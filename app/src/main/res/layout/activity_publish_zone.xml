@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.inuc.inuc.news.PublishNewsActivity">
-    <include layout="@layout/toolbar_mybar" />
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_mybar"></include>
+
     <EditText
         android:id="@+id/news_release_title_et"
         android:layout_width="match_parent"
@@ -33,6 +34,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textSize="@dimen/text_size" />
+
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
@@ -47,29 +49,24 @@
         android:scrollbars="none"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-
-    <Button
-        android:id="@+id/news_release_button"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login_button"
-        android:text="提交"
-        android:textSize="@dimen/text_size" />
+        android:layout_height="wrap_content">
 
-    <!--<ProgressBar-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/progressBar2"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_centerHorizontal="true" />-->
-</RelativeLayout>
+
+        <Button
+            android:id="@+id/news_release_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_button"
+            android:text="提交"
+            android:textSize="@dimen/text_size" />
+
+
+    </RelativeLayout>
 </LinearLayout>

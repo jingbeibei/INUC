@@ -26,4 +26,6 @@ public class Urls {
     public final static String GetOANewsUrl=BaseUrl+"GetOANews?";
     public final static String GetOANewsDetailsUrl=BaseUrl+"GetOANewsDetails?";
     public final static String PublishNewsUrl=BaseUrl+"PublishNews?";
+    public final static String PublishTalkingUrl=BaseUrl+"PublishTalking?";
+    public final static String GetTalkingsUrl=BaseUrl+"GetTalkings?";
 }
