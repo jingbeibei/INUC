@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (phoneNum.equals("") || password.equals("")) {
                     Toast.makeText(getApplicationContext(), "手机号或密码为空", Toast.LENGTH_LONG).show();
                     loginBtn.setText("登陆");
+                    
                 } else {//请求网络
                     OkHttpUtils
                             .post()

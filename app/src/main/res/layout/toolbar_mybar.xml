@@ -25,16 +25,24 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp" />
 
+            <!--<ImageView-->
+                <!--android:id="@+id/id_back_arrow_image"-->
+                <!--android:layout_width="36dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:paddingBottom="15dp"-->
+                <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+                <!--android:paddingTop="15dp"-->
+                <!--android:src="@mipmap/icon_left_arrow" />-->
             <ImageView
                 android:id="@+id/id_back_arrow_image"
-                android:layout_width="36dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:paddingBottom="15dp"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="15dp"
-                android:src="@mipmap/icon_left_arrow" />
+                android:layout_alignParentLeft="true"
+                android:layout_width="36dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_left_arrow"/>
             <TextView
                 android:id="@+id/bar_right_tv"
                 android:layout_width="wrap_content"

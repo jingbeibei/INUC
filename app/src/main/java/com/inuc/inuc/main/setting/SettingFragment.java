@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -31,8 +32,8 @@ import okhttp3.Call;
 public class SettingFragment extends Fragment {
     private TextView BarTitle;
     private ImageView BackImage;
-    private LinearLayout updateLy;
-    private LinearLayout aboutLy;
+    private RelativeLayout updateLy;
+    private RelativeLayout aboutLy;
 
     private SharedPreferences pref;
 
@@ -58,8 +59,8 @@ public class SettingFragment extends Fragment {
         BarTitle = (TextView) view.findViewById(R.id.id_bar_title);
         BackImage.setVisibility(View.INVISIBLE);
         BarTitle.setText("设置");
-        updateLy= (LinearLayout) view.findViewById(R.id.update_data_layout);
-        aboutLy= (LinearLayout) view.findViewById(R.id.about_layout);
+        updateLy= (RelativeLayout) view.findViewById(R.id.update_data_layout);
+        aboutLy= (RelativeLayout) view.findViewById(R.id.about_layout);
         initEvent();
         return view;
     }

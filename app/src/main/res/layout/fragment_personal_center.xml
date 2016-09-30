@@ -50,14 +50,14 @@
             android:layout_weight="1"
             android:text="修改资料"
             android:textColor="#000000"
-            android:textSize="@dimen/text_size" />
+             />
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="16dp"
-            android:background="@mipmap/jiantou" />
+            android:background="@mipmap/icon_arrow_black_right" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/modify_password_layout"
@@ -76,14 +76,14 @@
             android:layout_weight="1"
             android:text="修改密码"
             android:textColor="#000"
-            android:textSize="@dimen/text_size" />
+            />
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="16dp"
-            android:background="@mipmap/jiantou" />
+            android:background="@mipmap/icon_arrow_black_right" />
     </LinearLayout>
     <Button
         android:id="@+id/id_exit_btn"

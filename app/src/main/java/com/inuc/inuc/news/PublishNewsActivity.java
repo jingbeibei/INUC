@@ -111,6 +111,7 @@ public class PublishNewsActivity extends AppCompatActivity {
                             public void onResponse(String response, int id) {
                                 if (Integer.parseInt(response) > 0) {
                                     Toast.makeText(getApplicationContext(), "亲，发布成功，请等待审核！", Toast.LENGTH_LONG).show();
+                                    finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "发布失败", Toast.LENGTH_LONG).show();
                                 }

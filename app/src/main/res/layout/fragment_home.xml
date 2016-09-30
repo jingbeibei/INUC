@@ -36,6 +36,13 @@
         android:layout_height="wrap_content"
         android:text="OA"
         />
+    <Button
+        android:id="@+id/Micro_space_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="微空间"
+        />
+
 
 </LinearLayout>
 
