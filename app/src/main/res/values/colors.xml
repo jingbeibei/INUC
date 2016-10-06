@@ -10,4 +10,5 @@
     <color name="gray">#C0C0C0</color>
     <color name="red">#FF0000</color><!--红色 -->
     <color name="primary_light">#FFCDD2</color>
+    <color name="black">#000000</color>
 </resources>

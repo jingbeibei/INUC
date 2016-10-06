@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
- <include layout="@layout/toolbar_mybar"></include>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_mybar"></include>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-   <android.support.v4.widget.SwipeRefreshLayout
-       android:id="@+id/id_swipe"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-       <android.support.v7.widget.RecyclerView
-           android:id="@+id/id_recycleview_zone"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"/>
-   </android.support.v4.widget.SwipeRefreshLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/id_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/id_recycleview_zone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <ImageView
             android:id="@+id/id_image_publish"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@mipmap/icon_news_publish"
             android:layout_gravity="right|bottom"
-            android:layout_margin="30dp"/>
+            android:layout_margin="30dp"
+            android:src="@mipmap/icon_news_publish" />
     </FrameLayout>
 </LinearLayout>

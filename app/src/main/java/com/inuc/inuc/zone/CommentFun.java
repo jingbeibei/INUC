@@ -7,6 +7,7 @@ package com.inuc.inuc.zone;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -18,8 +19,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inuc.inuc.R;
+import com.inuc.inuc.beans.Remarks;
+
+import com.inuc.inuc.utils.Urls;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * 评论相关方法
@@ -29,15 +38,15 @@ public class CommentFun {
 
     /**
      * 在页面中显示评论列表
-     *
-     * @param context
+     *  @param context
      * @param mCommentList
      * @param commentList
      * @param btnComment
      * @param tagHandler
      */
-    public static void parseCommentList(Context context, ArrayList<Comment> mCommentList, LinearLayout commentList,
+    public static void parseCommentList(Context context, List<Comment> mCommentList, LinearLayout commentList,
                                         View btnComment, Html.TagHandler tagHandler) {
+
         if (btnComment != null) {
             btnComment.setTag(KEY_COMMENT_SOURCE_COMMENT_LIST, mCommentList);
         }
@@ -94,9 +103,10 @@ public class CommentFun {
         String hint;
         if (receiver != null) {
             if (receiver.mId == ZoneMainActivity.sUser.mId) {
-                hint = "我也说一句";
+                hint = "我也说一句..";
             } else {
-                hint = "回复 " + receiver.mName;
+//                hint = "回复 " + receiver.mName;
+                hint = "我也说一句..";
             }
         } else {
             hint = "我也说一句";
@@ -120,11 +130,35 @@ public class CommentFun {
                 final long receiverId = receiver == null ? -1 : receiver.mId;
                 Comment comment = new Comment(ZoneMainActivity.sUser, content, receiver);
                 commentList.add(comment);
+                remarkHttp(content);//将评论内容发送服务器
                 if (listener != null) {
                     listener.onCommitComment();
                 }
                 dialog.dismiss();
                 Toast.makeText(mContext, "评论成功", Toast.LENGTH_SHORT).show();
+            }
+
+            private void remarkHttp(String content) {
+                 SharedPreferences pref;
+                 String token;
+                pref = mContext.getSharedPreferences("data",0x0000);
+                token = pref.getString("token", "");
+////                OkHttpUtils.post().url(Urls.AddTalkingRemark)
+////                        .addHeader("Authorization", token)
+////                        .addParams("newsID",)
+////                        .addParams("remarks",content)
+////                        .addParams("imei", DeviceUtil.getIMEIDeviceId(mContext))
+////                        .build().execute(new StringCallback() {
+//                    @Override
+//                    public void onError(Call call, Exception e, int id) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String response, int id) {
+//
+//                    }
+//                });
             }
 
             @Override

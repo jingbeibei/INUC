@@ -9,14 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.inuc.inuc.R;
 import com.inuc.inuc.beans.BannerPic;
-import com.inuc.inuc.mailbox.ChiefMailboxActivity;
 import com.inuc.inuc.mailbox.TabLayoutTopActivity;
 import com.inuc.inuc.main.ImageSlideshow.ImageSlideshow;
 import com.inuc.inuc.news.NewsListActivity;

@@ -87,7 +87,6 @@ public class NewsDetailedActivity extends AppCompatActivity {
 
         //视频设置
         content.setWebChromeClient(m_chromeClient);
-
         //	contentWebView.getSettings().setLoadsImagesAutomatically(true);
         content.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
         //		contentWebView.getSettings().setJavaScriptEnabled(true);

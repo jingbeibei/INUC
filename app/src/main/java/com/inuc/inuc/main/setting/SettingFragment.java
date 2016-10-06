@@ -59,8 +59,8 @@ public class SettingFragment extends Fragment {
         BarTitle = (TextView) view.findViewById(R.id.id_bar_title);
         BackImage.setVisibility(View.INVISIBLE);
         BarTitle.setText("设置");
-        updateLy= (RelativeLayout) view.findViewById(R.id.update_data_layout);
-        aboutLy= (RelativeLayout) view.findViewById(R.id.about_layout);
+        updateLy= (RelativeLayout) view.findViewById(R.id.update_data_layout1);
+        aboutLy= (RelativeLayout) view.findViewById(R.id.about_layout1);
         initEvent();
         return view;
     }

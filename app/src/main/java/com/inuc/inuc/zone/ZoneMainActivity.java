@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.inuc.inuc.R;
+import com.inuc.inuc.beans.Personnel;
 import com.inuc.inuc.beans.ZoneBean;
 import com.inuc.inuc.utils.Urls;
+import com.squareup.picasso.Picasso;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -42,7 +44,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
     private ImageView image_publish;
 
     private Context mContext;
-    public static User sUser = new User(1, "走向远方"); // 当前登录用户
+    public static User sUser = new User(999999,"爱中北");
 
     private int pageIndex = 1;
     private RecyclerView mRecyclerView;
@@ -52,7 +54,6 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
     private ZoneRecycleViewAdapter zoneRecycleAdapter;
     private TextView BarTitle;
 
-    private ArrayList<Moment> moments = new ArrayList<Moment>();
 
     private SharedPreferences pref;
     private String token;
@@ -87,20 +88,12 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
     private void testData() {
         zoneBeanList = new ArrayList<>();
         //评论数据
-        ArrayList<Moment> moments = new ArrayList<Moment>();
-        for (int i = 0; i < 20; i++) {
-            ArrayList<Comment> comments = new ArrayList<Comment>();
-            comments.add(new Comment(new User(i + 2, "用户" + i), "评论" + i, null));
-            comments.add(new Comment(new User(i + 100, "用户" + (i + 100)), "评论" + i, new User(i + 200, "用户" + (i + 200))));
-            comments.add(new Comment(new User(i + 200, "用户" + (i + 200)), "评论" + i, null));
-            comments.add(new Comment(new User(i + 300, "用户" + (i + 300)), "评论" + i, null));
-            moments.add(new Moment("动态 " + i, comments));
-        }
+
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        zoneRecycleAdapter = new ZoneRecycleViewAdapter(zoneBeanList,moments,mContext,new CustomTagHandler(mContext,new CustomTagHandler.OnCommentClickListener(){
+        zoneRecycleAdapter = new ZoneRecycleViewAdapter(mContext.getSharedPreferences("data",MODE_APPEND), mRecyclerView,zoneBeanList,mContext,new CustomTagHandler(mContext,new CustomTagHandler.OnCommentClickListener(){
 
             @Override
             public void onCommentatorClick(View view, User commentator) {
@@ -129,7 +122,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
         inputComment(view, null,null);
     }
     public void inputComment(final View v, User receiver, RecyclerView mRecyclerView) {
-        CommentFun.inputComment(ZoneMainActivity.this, mRecyclerView, v, receiver, new CommentFun.InputCommentListener() {
+            new ZoneRecycleViewAdapter(mContext.getSharedPreferences("data",MODE_APPEND)).inputComment(ZoneMainActivity.this, mRecyclerView, v, receiver, new ZoneRecycleViewAdapter.InputCommentListener() {
             @Override
             public void onCommitComment() {
                 zoneRecycleAdapter.notifyDataSetChanged();
@@ -156,11 +149,10 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
         if (pageIndex == 1) {
             showProgress();
         }
-        loadDate(pageIndex,8,1,1);
+        loadDate(pageIndex,8,1,20);
     }
 
     public void showProgress() {
-        Log.i("@@@","Refresh");
         refreshLayout.setRefreshing(true);
     }
 
@@ -231,7 +223,6 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
                         }else{
                             List<ZoneBean> zbList=new Gson().fromJson(response, new TypeToken<List<ZoneBean>>() {
                             }.getType());
-                            Log.i("@@@","onResponse");
                             addonSuccess(zbList);
                         }
                     }
@@ -280,4 +271,5 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
         View v1 = mRecyclerView.getRootView();
         Toast.makeText(ZoneMainActivity.this, error, Toast.LENGTH_SHORT).show();
     }
+
 }

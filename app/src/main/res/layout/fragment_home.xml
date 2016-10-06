@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <com.inuc.inuc.main.ImageSlideshow.ImageSlideshow
         android:id="@+id/is_gallery"
         android:layout_width="match_parent"
-        android:layout_height="192dp">
-    </com.inuc.inuc.main.ImageSlideshow.ImageSlideshow>
-    <ScrollView
+        android:layout_height="192dp"></com.inuc.inuc.main.ImageSlideshow.ImageSlideshow>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    >
-    <Button
-        android:id="@+id/news_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="新闻"
-        />
-    <Button
-        android:id="@+id/principal_mailbox_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="校长信箱"
-        />
-    <Button
-        android:id="@+id/office_automation_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OA"
-        />
-    <Button
-        android:id="@+id/Micro_space_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="微空间"
-        />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/news_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新闻" />
+
+        <Button
+            android:id="@+id/principal_mailbox_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="校长信箱" />
+
+        <Button
+            android:id="@+id/office_automation_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OA" />
+
+        <Button
+            android:id="@+id/Micro_space_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微空间" />
 
 
-</LinearLayout>
+    </LinearLayout>
 
 
-    </ScrollView>
 </LinearLayout>
