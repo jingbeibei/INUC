@@ -96,7 +96,10 @@ public class PublishNewsActivity extends AppCompatActivity {
                     Log.i("图片1", picCode);
                     picCode = picCode.substring(0, picCode.length() - 1);
                     Log.i("图片2", picCode);
+
                 }
+                newsPublishBT.setText("提交...");
+                newsPublishBT.setClickable(false);
                 OkHttpUtils.post().url(Urls.PublishNewsUrl).addHeader("Authorization", token)
                         .addParams("title", title)
                         .addParams("contents", content)
@@ -105,6 +108,8 @@ public class PublishNewsActivity extends AppCompatActivity {
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 Toast.makeText(getApplicationContext(), "未知错误，请联系管理员", Toast.LENGTH_LONG).show();
+                                newsPublishBT.setText("提交");
+                                newsPublishBT.setClickable(true);
                             }
 
                             @Override
@@ -113,6 +118,8 @@ public class PublishNewsActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "亲，发布成功，请等待审核！", Toast.LENGTH_LONG).show();
                                     finish();
                                 } else {
+                                    newsPublishBT.setText("提交");
+                                    newsPublishBT.setClickable(true);
                                     Toast.makeText(getApplicationContext(), "发布失败", Toast.LENGTH_LONG).show();
                                 }
                             }

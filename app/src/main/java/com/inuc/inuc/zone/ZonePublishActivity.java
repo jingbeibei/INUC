@@ -39,7 +39,7 @@ public class ZonePublishActivity extends AppCompatActivity {
     private ArrayList<String> mSelectPath;
     private MultiImageAdapter adapter;
     private GridView gridView;
-    private EditText titleET;
+
     private EditText contentET;
     private String picCode = "";
     private Button newsPublishBT;
@@ -58,7 +58,7 @@ public class ZonePublishActivity extends AppCompatActivity {
         token = pref.getString("token", "");
 
         gridView = (GridView) findViewById(R.id.gridView);
-        titleET = (EditText) findViewById(R.id.news_release_title_et);
+//        titleET = (EditText) findViewById(R.id.news_release_title_et);
         contentET = (EditText) findViewById(R.id.news_releasw_content_et);
         newsPublishBT = (Button) findViewById(R.id.news_release_button);
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
@@ -82,7 +82,7 @@ public class ZonePublishActivity extends AppCompatActivity {
         newsPublishBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String title = titleET.getText().toString();
+//                String title = titleET.getText().toString();
                 String content = contentET.getText().toString();
                 if ( content.equals("")) {
                     Toast.makeText(getApplicationContext(), "亲，内容不能为空！", Toast.LENGTH_LONG).show();
@@ -102,6 +102,8 @@ public class ZonePublishActivity extends AppCompatActivity {
                     picCode = picCode.substring(0, picCode.length() - 1);
                     Log.i("图片2", picCode);
                 }
+                newsPublishBT.setClickable(false);
+                newsPublishBT.setText("提交...");
                 OkHttpUtils.post().url(Urls.PublishTalkingUrl).addHeader("Authorization", token)
                         .addParams("contents", content)
                         .addParams("picCode", picCode).build()
@@ -109,6 +111,8 @@ public class ZonePublishActivity extends AppCompatActivity {
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 Toast.makeText(getApplicationContext(), "未知错误，请联系管理员", Toast.LENGTH_LONG).show();
+                                newsPublishBT.setText("提交");
+                                newsPublishBT.setClickable(true);
                             }
 
                             @Override
@@ -118,6 +122,8 @@ public class ZonePublishActivity extends AppCompatActivity {
                                     finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "发布失败", Toast.LENGTH_LONG).show();
+                                    newsPublishBT.setText("提交");
+                                    newsPublishBT.setClickable(true);
                                 }
                             }
                         });

@@ -5,65 +5,65 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/toolbar_mybar"></include>
-    <LinearLayout
-        android:id="@+id/update_data_layout"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/update_data_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:background="@drawable/login">-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:text="检查新版本"
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="检查新版本"-->
 
-            />
+            <!--/>-->
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="16dp"
-            android:background="@mipmap/icon_arrow_black_right"
-            android:id="@+id/imageView" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/about_layout"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login">
+        <!--<ImageView-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:background="@mipmap/icon_arrow_black_right"-->
+            <!--android:id="@+id/imageView" />-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/about_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:background="@drawable/login">-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:text="关于我们"
-             />
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="关于我们"-->
+             <!--/>-->
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="16dp"
-            android:background="@mipmap/icon_arrow_black_right"
-            android:id="@+id/imageView2" />
-    </LinearLayout>
+        <!--<ImageView-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:background="@mipmap/icon_arrow_black_right"-->
+            <!--android:id="@+id/imageView2" />-->
+    <!--</LinearLayout>-->
     <RelativeLayout
         android:id="@+id/update_data_layout1"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:background="@drawable/login"
+       
         android:layout_width="match_parent"
         android:layout_height="45dp">
         <ImageView
@@ -86,6 +86,12 @@
             android:layout_width="25dp"
             android:layout_height="20dp" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+
+        android:background="@color/gray"
+        />
     <RelativeLayout
         android:id="@+id/about_layout1"
         android:layout_marginTop="1dp"
@@ -114,4 +120,10 @@
             android:layout_width="25dp"
             android:layout_height="20dp" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+
+        android:background="@color/gray"
+        />
 </LinearLayout>

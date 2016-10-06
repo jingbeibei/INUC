@@ -7,18 +7,7 @@
 
     <include layout="@layout/toolbar_mybar"></include>
 
-    <EditText
-        android:id="@+id/news_release_title_et"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/login"
-        android:gravity="center"
-        android:hint="标题"
-        android:singleLine="true"
-        android:textSize="@dimen/text_size" />
+
 
     <EditText
         android:id="@+id/news_releasw_content_et"

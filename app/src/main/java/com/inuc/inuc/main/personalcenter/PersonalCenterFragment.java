@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -46,8 +47,8 @@ public class PersonalCenterFragment extends Fragment implements View.OnClickList
     private Personnel personnel;
     private ImageView headImage;
     private TextView nicknameTV;
-    private LinearLayout modifyData;
-    private LinearLayout modifyPassword;
+    private RelativeLayout modifyData;
+    private RelativeLayout  modifyPassword;
     private Button exitBtn;
 
     private static final int REQUEST_IMAGE = 2;
@@ -74,8 +75,8 @@ public class PersonalCenterFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_personal_center, container, false);
         headImage = (ImageView) view.findViewById(R.id.setting_head_image);
         nicknameTV = (TextView) view.findViewById(R.id.setting_nickname);
-        modifyData = (LinearLayout) view.findViewById(R.id.modify_data_layout);
-        modifyPassword = (LinearLayout) view.findViewById(R.id.modify_password_layout);
+        modifyData = (RelativeLayout ) view.findViewById(R.id.modify_data_layout);
+        modifyPassword = (RelativeLayout ) view.findViewById(R.id.modify_password_layout);
         BackImage = (ImageView) view.findViewById(R.id.id_back_arrow_image);
         BarTitle = (TextView) view.findViewById(R.id.id_bar_title);
         BackImage.setVisibility(View.INVISIBLE);
