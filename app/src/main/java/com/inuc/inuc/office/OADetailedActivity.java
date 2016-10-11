@@ -27,7 +27,7 @@ public class OADetailedActivity extends AppCompatActivity {
     private TextView title;
     private WebView content;
     private String contentString;
-    String head = "<html><head></head><body>";
+    String head = "<html><head><style>img{width:100%;}</style></head><body>";
     String end = "</body></html>";
     private TextView BarTitle;
     private ImageView BackImage;

@@ -39,7 +39,7 @@ public class PageFragment extends android.support.v4.app.Fragment {
         PersonalCenterFragment pcf=new PersonalCenterFragment();
 //        pcf.setArguments(args);
         if (page==1){
-            return new HomeFragment();
+            return new HomeFragmentTwo();
         }
         if(page==2){
             return pcf;

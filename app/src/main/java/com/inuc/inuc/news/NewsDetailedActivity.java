@@ -25,7 +25,7 @@ public class NewsDetailedActivity extends AppCompatActivity {
     private TextView title;
     private WebView content;
     private String contentString;
-    String head = "<html><head></head><body>";
+    String head = "<html><head><style>img{width:100%;}</style></head><body>";
     String end = "</body></html>";
     private TextView BarTitle;
     private ImageView BackImage;
@@ -72,27 +72,33 @@ public class NewsDetailedActivity extends AppCompatActivity {
     }
 
     private void initWeb() {
-        WebChromeClient m_chromeClient = new WebChromeClient() {
-            @Override
-            public void onShowCustomView(View view, CustomViewCallback callback) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                // TODO Auto-generated method stub
-                super.onProgressChanged(view, newProgress);
-            }
-        };
-
-        //视频设置
-        content.setWebChromeClient(m_chromeClient);
-        //	contentWebView.getSettings().setLoadsImagesAutomatically(true);
-        content.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
-        //		contentWebView.getSettings().setJavaScriptEnabled(true);
-        content.getSettings().setDefaultTextEncodingName("utf-8");
-        content.getSettings().setDefaultFontSize(18);
-        content.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        WebChromeClient m_chromeClient = new WebChromeClient() {
+//            @Override
+//            public void onShowCustomView(View view, CustomViewCallback callback) {
+//                // TODO Auto-generated method stub
+//            }
+//
+//            @Override
+//            public void onProgressChanged(WebView view, int newProgress) {
+//                // TODO Auto-generated method stub
+//                super.onProgressChanged(view, newProgress);
+//            }
+//        };
+//
+//        //视频设置
+//        content.setWebChromeClient(m_chromeClient);
+//        //	contentWebView.getSettings().setLoadsImagesAutomatically(true);
+//        content.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+//        //		contentWebView.getSettings().setJavaScriptEnabled(true);
+//        content.getSettings().setDefaultTextEncodingName("utf-8");
+//        content.getSettings().setDefaultFontSize(18);
+//        content.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        WebSettings settings = content.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setSupportZoom(false);
+        settings.setBuiltInZoomControls(false);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         if (contentString != null) {
             contentString = contentString.replace(";", "");
         }
