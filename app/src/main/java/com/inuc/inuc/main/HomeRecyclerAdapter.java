@@ -18,6 +18,7 @@ import com.inuc.inuc.beans.BannerPic;
 import com.inuc.inuc.beans.News;
 import com.inuc.inuc.mailbox.TabLayoutTopActivity;
 import com.inuc.inuc.main.ImageSlideshow.ImageSlideshow;
+import com.inuc.inuc.news.NewsDetailedActivity;
 import com.inuc.inuc.office.OfficeAutomationActivity;
 import com.inuc.inuc.utils.Urls;
 import com.inuc.inuc.zone.ZoneMainActivity;
@@ -256,23 +257,35 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             imageSlideshow.setOnItemClickListener(new ImageSlideshow.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
+                    Intent intent=new Intent(view.getContext(), NewsDetailedActivity.class);
                     switch (position) {
                         case 0:
+                            intent.putExtra("id", bannerPicsList.get(0).getID() + "");
+                            view.getContext().startActivity(intent);
                             Toast.makeText(view.getContext(), "0", Toast.LENGTH_LONG).show();
 //                        startActivity(new Intent(MainActivity.this,Activity_1.class));
                             break;
                         case 1:
+                            intent.putExtra("id", bannerPicsList.get(1).getID() + "");
+                            view.getContext().startActivity(intent);
                             Toast.makeText(view.getContext(), "1", Toast.LENGTH_LONG).show();
                             break;
                         case 2:
+                            intent.putExtra("id", bannerPicsList.get(2).getID() + "");
+                            view.getContext().startActivity(intent);
                             Toast.makeText(view.getContext(), "2", Toast.LENGTH_LONG).show();
                             break;
                         case 3:
+                            intent.putExtra("id", bannerPicsList.get(3).getID() + "");
+                            view.getContext().startActivity(intent);
                             Toast.makeText(view.getContext(), "3", Toast.LENGTH_LONG).show();
                             break;
                         case 4:
+                            intent.putExtra("id", bannerPicsList.get(4).getID() + "");
+                            view.getContext().startActivity(intent);
                             Toast.makeText(view.getContext(), "4", Toast.LENGTH_LONG).show();
                             break;
+//                        default:view.getContext().startActivity(intent);
                     }
                 }
             });

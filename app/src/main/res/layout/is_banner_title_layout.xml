@@ -19,7 +19,8 @@
         android:layout_marginRight="12dp"
         android:gravity="center"
         android:padding="4dp"
+        android:text="555"
         android:background="#50C0C0C0"
-        android:textColor="#ecf0f1"
-        android:textSize="20sp"/>
+
+        android:textSize="18sp"/>
 </RelativeLayout>
