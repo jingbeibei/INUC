@@ -18,6 +18,7 @@ import com.inuc.inuc.beans.BannerPic;
 import com.inuc.inuc.beans.News;
 import com.inuc.inuc.mailbox.TabLayoutTopActivity;
 import com.inuc.inuc.main.ImageSlideshow.ImageSlideshow;
+import com.inuc.inuc.meetings.OAMeetingsListActivity;
 import com.inuc.inuc.news.NewsDetailedActivity;
 import com.inuc.inuc.office.OfficeAutomationActivity;
 import com.inuc.inuc.utils.Urls;
@@ -262,30 +263,30 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         case 0:
                             intent.putExtra("id", bannerPicsList.get(0).getID() + "");
                             view.getContext().startActivity(intent);
-                            Toast.makeText(view.getContext(), "0", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(view.getContext(), "0", Toast.LENGTH_LONG).show();
 //                        startActivity(new Intent(MainActivity.this,Activity_1.class));
                             break;
                         case 1:
                             intent.putExtra("id", bannerPicsList.get(1).getID() + "");
                             view.getContext().startActivity(intent);
-                            Toast.makeText(view.getContext(), "1", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(view.getContext(), "1", Toast.LENGTH_LONG).show();
                             break;
                         case 2:
                             intent.putExtra("id", bannerPicsList.get(2).getID() + "");
                             view.getContext().startActivity(intent);
-                            Toast.makeText(view.getContext(), "2", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(view.getContext(), "2", Toast.LENGTH_LONG).show();
                             break;
                         case 3:
                             intent.putExtra("id", bannerPicsList.get(3).getID() + "");
                             view.getContext().startActivity(intent);
-                            Toast.makeText(view.getContext(), "3", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(view.getContext(), "3", Toast.LENGTH_LONG).show();
                             break;
                         case 4:
                             intent.putExtra("id", bannerPicsList.get(4).getID() + "");
                             view.getContext().startActivity(intent);
-                            Toast.makeText(view.getContext(), "4", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(view.getContext(), "4", Toast.LENGTH_LONG).show();
                             break;
-//                        default:view.getContext().startActivity(intent);
+
                     }
                 }
             });
@@ -297,15 +298,18 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private LinearLayout principalMailboxBt;
         private LinearLayout officeAutomationBt;
         private LinearLayout MicroSpaceBt;
+        private LinearLayout MeetingsBt;
 
         public MenusViewHolder(View view) {
             super(view);
             principalMailboxBt = (LinearLayout) view.findViewById(R.id.mailbox_layout);
             officeAutomationBt = (LinearLayout) view.findViewById(R.id.oa_layout);
             MicroSpaceBt = (LinearLayout) view.findViewById(R.id.zone_layout);
+            MeetingsBt= (LinearLayout) view.findViewById(R.id.oa_meetings_layout);
             principalMailboxBt.setOnClickListener(this);
             officeAutomationBt.setOnClickListener(this);
             MicroSpaceBt.setOnClickListener(this);
+            MeetingsBt.setOnClickListener(this);
         }
 
         @Override
@@ -323,6 +327,10 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 case R.id.zone_layout://微空间
                     Intent msIntent = new Intent(view.getContext(), ZoneMainActivity.class);
                     view.getContext().startActivity(msIntent);
+                    break;
+                case R.id.oa_meetings_layout://每周会议
+                    Intent meetingIntent = new Intent(view.getContext(), OAMeetingsListActivity.class);
+                    view.getContext().startActivity(meetingIntent);
                     break;
             }
 

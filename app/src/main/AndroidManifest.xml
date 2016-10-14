@@ -46,9 +46,10 @@
 
         <service android:name=".main.setting.receiver.UpdateService" />
 
-        <activity android:name=".news.PublishNewsActivity"></activity>
-        <activity android:name=".zone.ZoneMainActivity"></activity>
-        <activity android:name=".zone.ZonePublishActivity"></activity>
+        <activity android:name=".news.PublishNewsActivity" />
+        <activity android:name=".zone.ZoneMainActivity" />
+        <activity android:name=".zone.ZonePublishActivity" />
+        <activity android:name=".meetings.OAMeetingsListActivity"></activity>
     </application>
 
 </manifest>

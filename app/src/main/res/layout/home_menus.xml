@@ -67,6 +67,24 @@
                 android:layout_height="wrap_content"
                 android:text="微空间" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/oa_meetings_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/icon_zone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每周会议" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
