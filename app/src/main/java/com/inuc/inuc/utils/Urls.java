@@ -30,4 +30,5 @@ public class Urls {
     public final static String GetTalkingsUrl=BaseUrl+"GetTalkings?";
     public final static String AddTalkingPoint=BaseUrl+"AddTalkingPoint?";
     public final static String AddTalkingRemark=BaseUrl+"AddTalkingRemark?";
+    public final static String GetOAMeetingsUrl=BaseUrl+"GetOAMeetings?";
 }
