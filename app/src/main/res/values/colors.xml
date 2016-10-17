@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#2F8D9E</color>
     <!--#303F9F-->
     <color name="colorAccent">#FF4081</color>
-
+<color name="colorControlNormal">#ffffff</color>
     <color name="colorWhite">#ffffff</color>
     <color name="gray">#C0C0C0</color>
     <color name="red">#FF0000</color><!--红色 -->

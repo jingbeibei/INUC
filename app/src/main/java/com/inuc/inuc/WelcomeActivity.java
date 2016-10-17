@@ -7,6 +7,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -43,7 +45,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private String times;
     private FlashPicture flashPicture;
     private Thread mSplashThread;
-
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,16 +148,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 } catch (InterruptedException ex) {
                 }
 
-                finish();
 
                 editor.commit();
                 //启动下一个Activity
-                if (token.equals("")) {
-                    startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-
-                } else {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                }
+                Message msg = new Message();
+                msg.what = 1;
+                mHandler.sendMessage(msg);
 
                 try {
                     stop();
@@ -167,7 +165,25 @@ public class WelcomeActivity extends AppCompatActivity {
         };
 
         mSplashThread.start();
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                // TODO Auto-generated method stub
+                super.handleMessage(msg);
+                if(msg.what == 1){
+                    if (token.equals("")) {
+                        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                        overridePendingTransition(android.support.v7.appcompat.R.anim.abc_fade_in, android.support.v7.appcompat.R.anim.abc_fade_out);
+                        finish();
+                    } else {
+                        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                        overridePendingTransition(android.support.v7.appcompat.R.anim.abc_fade_in, android.support.v7.appcompat.R.anim.abc_popup_exit);
+                        finish();
+                    }
+                }
+            }
 
+        };
 
     }
 

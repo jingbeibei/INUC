@@ -32,8 +32,9 @@ public class AboutActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        int version = info.versionCode;//获取版本号
-        versionTV.setText("爱中北"+version);
+        String version = info.versionName;//获取版本号
+
+        versionTV.setText("爱中北 V"+version);
 
         backIV.setOnClickListener(new View.OnClickListener() {
             @Override

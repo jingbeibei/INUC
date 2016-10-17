@@ -78,7 +78,7 @@
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@mipmap/icon_zone" />
+                android:src="@mipmap/icon_meeting" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,6 +92,7 @@
         android:layout_height="wrap_content"
         android:background="#eeeeee"
         android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="校园新闻"
         android:textSize="@dimen/text_size" />
 

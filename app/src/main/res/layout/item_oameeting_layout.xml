@@ -7,8 +7,9 @@
     android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -16,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="学生工作会议" />
+            android:text="学生工作会议"
+            android:textSize="@dimen/text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,12 +28,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="时间：" />
+                android:text="时间："
+                android:textSize="@dimen/text_size_16" />
 
             <TextView
                 android:id="@+id/meeting_time_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
                 android:text="2016-10-11T08:30:00" />
         </LinearLayout>
 
@@ -43,12 +47,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地点：" />
+                android:text="地点："
+
+                android:textSize="@dimen/text_size_16" />
 
             <TextView
                 android:id="@+id/meeting_address_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
                 android:text="主楼5层会议室" />
         </LinearLayout>
 
@@ -61,12 +68,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="参会人员：" />
+                android:textSize="@dimen/text_size_16"
+                android:text="参会人员："
+
+                 />
 
             <TextView
                 android:id="@+id/meeting_attendees_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
                 android:text="薛智,邱建国,张清,顾宁,常旭青,贾鹏,李秀玲,李云,廖海洪,刘光,屈有明,田维飞,魏媛媛,薛亚奎,杨湖,杨晓东,段义权,周毅" />
         </LinearLayout>
     </LinearLayout>

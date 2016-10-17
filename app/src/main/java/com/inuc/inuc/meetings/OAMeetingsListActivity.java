@@ -2,10 +2,10 @@ package com.inuc.inuc.meetings;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +20,7 @@ import android.widget.TextView;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.inuc.inuc.R;
-import com.inuc.inuc.beans.News;
 import com.inuc.inuc.beans.OAMeeting;
-import com.inuc.inuc.news.NewsAdapter;
-import com.inuc.inuc.news.NewsDetailedActivity;
-import com.inuc.inuc.news.NewsListActivity;
 import com.inuc.inuc.news.PublishNewsActivity;
 import com.inuc.inuc.utils.ActivityCollector;
 import com.inuc.inuc.utils.Urls;
@@ -32,7 +28,6 @@ import com.inuc.inuc.utils.WeekUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,11 +47,16 @@ public class OAMeetingsListActivity extends AppCompatActivity implements SwipeRe
 
     private SharedPreferences pref;
     private String token;
-    private TextView BarTitle;
+    private TextView DateTime;
     private ImageView BackImage;
     private TextView BarRight;
-    Date today = null;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private Date today = null;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private int weekNumber;
+    private String FirstDayOfWeek = "";
+    private String LastDayOfWeek = "";
+    private int WeekNumberOfYear;
+    private int year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,33 +65,46 @@ public class OAMeetingsListActivity extends AppCompatActivity implements SwipeRe
         ActivityCollector.addActivity(this);
         pref = getSharedPreferences("data", MODE_PRIVATE);
         token = pref.getString("token", "");
-today=new Date();
-        initView();
-        onRefresh();
+        today = new Date();
         Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        Log.d("第几周", c.get(Calendar.WEEK_OF_YEAR) + "");
-        Log.d("哪一年", c.get(Calendar.YEAR) + "");
+        c.setTime(today);
+        year = c.get(Calendar.YEAR);//得到当前年份
+        weekNumber = WeekUtil.getWeekOfYear(today);//得到当前时间所在周数
+//        FirstDayOfWeek=sdf.format(WeekUtil.getFirstDayOfWeek(year, weekNumber));//得到当前周数的第一天
+//        LastDayOfWeek=sdf.format(WeekUtil.getLastDayOfWeek(year, weekNumber));//得到当前周数的最后一天
+        WeekNumberOfYear = WeekUtil.getMaxWeekNumOfYear(year);//得到当前年份的周数
+
+        initView();
+//        onRefresh();
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(new Date());
+//        Log.d("第几周", c.get(Calendar.WEEK_OF_YEAR) + "");
+//        Log.d("哪一年", c.get(Calendar.YEAR) + "");
 //        Log.d("哪一年", getWeekNumByYear(2016) + "");
 
         // 初始化控件
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // 建立数据源
-        String[] mItems = new String[50];
+        String[] mItems = new String[WeekNumberOfYear];
 //        = getResources().getStringArray(R.array.languages);
-        for (int i = 0; i < 50; i++) {
-            mItems[i] =i + "";
+        for (int i = 0; i < WeekNumberOfYear; i++) {
+            mItems[i] = "第" + (i + 1) + "周";
         }
         // 建立Adapter并且绑定数据源
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_checked_text, mItems);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         //绑定 Adapter到控件
         spinner.setAdapter(adapter);
+        spinner.setSelection(weekNumber - 1, true);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        today=WeekUtil.getFirstDayOfWeek(2016,position+1);
+                today = WeekUtil.getFirstDayOfWeek(2016, position + 1);
                 onRefresh();
+                weekNumber = WeekUtil.getWeekOfYear(today);//得到当前时间所在周数
+                FirstDayOfWeek = sdf.format(WeekUtil.getFirstDayOfWeek(year, weekNumber));//得到当前周数的第一天
+                LastDayOfWeek = sdf.format(WeekUtil.getLastDayOfWeek(year, weekNumber));//得到当前周数的最后一天
+                DateTime.setText(FirstDayOfWeek.substring(0, 10) + "至" + LastDayOfWeek.substring(0, 10));
             }
 
             @Override
@@ -103,11 +116,11 @@ today=new Date();
     }
 
     private void initView() {
-        BarTitle = (TextView) findViewById(R.id.id_bar_title);
-        BarRight = (TextView) findViewById(R.id.bar_right_tv);
-        BarRight.setText("发布");
-        BarRight.setVisibility(View.VISIBLE);
-        BarTitle.setText("每周会议");
+
+//        BarRight = (TextView) findViewById(R.id.bar_right_tv);
+//        BarRight.setText("发布");
+//        BarRight.setVisibility(View.INVISIBLE);
+        DateTime = (TextView) findViewById(R.id.date_time_tv);
 
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
 
@@ -122,6 +135,7 @@ today=new Date();
         // mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
 
         mAdapter = new MeetingAdapter(this);
+        mAdapter.isShowFooter(false);
         mAdapter.setOnItemClickListener(mOnItemClickListener);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addOnScrollListener(mOnScrollListener);
@@ -129,13 +143,6 @@ today=new Date();
             @Override
             public void onClick(View v) {
                 ActivityCollector.removeActivity(OAMeetingsListActivity.this);
-            }
-        });
-        BarRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OAMeetingsListActivity.this, PublishNewsActivity.class);
-                startActivity(intent);
             }
         });
     }
@@ -149,7 +156,8 @@ today=new Date();
         if (pageIndex == 1) {
             showProgress();
         }
-        loadDate(today.toString());
+
+        loadDate(sdf.format(today));
     }
 
     public void showProgress() {
@@ -164,12 +172,10 @@ today=new Date();
     public void loadDate(String date) {
 
 
-        try {
-            Log.i("当前日期",sdf.parse(date).toString());
-            Log.i("当前第几周",WeekUtil.getWeekOfYear(sdf.parse(date))+"");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        Log.i("当前日期", date);
+//        Log.i("当前第几周", weekNumber + "");
+//        Log.i("当前周的开始时间", FirstDayOfWeek);
+//        Log.i("当前周的结束时间", LastDayOfWeek);
         OkHttpUtils.get().url(Urls.GetOAMeetingsUrl).addParams("day", date)
                 .addHeader("Authorization", token).build()
                 .execute(new StringCallback() {
@@ -202,7 +208,7 @@ today=new Date();
 
     public void addonSuccess(List<OAMeeting> list) {
         hideProgress();
-//        addNews(list);
+        addNews(list);
     }
 
 
@@ -220,6 +226,10 @@ today=new Date();
         if (pageIndex == 1) {
             if (newsList.size() < Urls.PAZE_SIZE) {
                 mAdapter.isShowFooter(false);
+            }
+            if (newsList == null || newsList.size() == 0) {
+
+                Snackbar.make(mRecyclerView, "本周暂无会议安排...", Snackbar.LENGTH_SHORT).show();
             }
             mAdapter.setmDate(mData);
         } else {

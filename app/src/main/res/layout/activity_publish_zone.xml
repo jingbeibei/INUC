@@ -54,6 +54,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/login_button"
             android:text="提交"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_size" />
 
 
