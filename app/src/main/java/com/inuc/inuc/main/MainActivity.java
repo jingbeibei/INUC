@@ -15,6 +15,7 @@ import com.inuc.inuc.R;
 import com.inuc.inuc.beans.LastApp;
 import com.inuc.inuc.beans.Personnel;
 import com.inuc.inuc.main.setting.receiver.UpdateReceiver;
+import com.inuc.inuc.main.setting.receiver.UpdateReceiverTwo;
 import com.inuc.inuc.utils.ActivityCollector;
 import com.inuc.inuc.utils.Urls;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Personnel personnel;
     private SharedPreferences pref;
     LastApp lastApp;
-    UpdateReceiver mUpdateReceiver;
+    UpdateReceiverTwo mUpdateReceiver;
     IntentFilter mIntentFilter;
 
     @Override
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response, int id) {
                         if (response.indexOf("VersionID") > 0) {
                             lastApp = new Gson().fromJson(response, LastApp.class);
-                            Intent intent = new Intent(UpdateReceiver.UPDATE_ACTION);
+                            Intent intent = new Intent(UpdateReceiverTwo.UPDATE_ACTION);
                             intent.putExtra("LastApp", lastApp);
                             sendBroadcast(intent);
                         } else {
@@ -101,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
      * 广播注册
      */
     private void registerBroadcast() {
-        mUpdateReceiver = new UpdateReceiver(false);
-        mIntentFilter = new IntentFilter(UpdateReceiver.UPDATE_ACTION);
+        mUpdateReceiver = new UpdateReceiverTwo(false);
+        mIntentFilter = new IntentFilter(UpdateReceiverTwo.UPDATE_ACTION);
         registerReceiver(mUpdateReceiver, mIntentFilter);
     }
 

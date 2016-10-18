@@ -1,5 +1,6 @@
 package com.inuc.inuc.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,6 +30,7 @@ public class NewsDetailedActivity extends AppCompatActivity {
     String end = "</body></html>";
     private TextView BarTitle;
     private ImageView BackImage;
+    private TextView BarRight;
 
 
     @Override
@@ -42,6 +44,9 @@ public class NewsDetailedActivity extends AppCompatActivity {
         content = (WebView) findViewById(R.id.news_content_web);
         BarTitle = (TextView) findViewById(R.id.id_bar_title);
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
+        BarRight= (TextView) findViewById(R.id.bar_right_tv);
+        BarRight.setText("发布");
+        BarRight.setVisibility(View.VISIBLE);
         OkHttpUtils.get().url(Urls.GetInfomationUrl)
                 .addParams("id", newsId).build()
                 .execute(new StringCallback() {
@@ -67,6 +72,13 @@ public class NewsDetailedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ActivityCollector.removeActivity(NewsDetailedActivity.this);
+            }
+        });
+        BarRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(NewsDetailedActivity.this,PublishNewsActivity.class);
+                startActivity(intent);
             }
         });
     }
