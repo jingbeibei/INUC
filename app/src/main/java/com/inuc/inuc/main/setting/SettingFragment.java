@@ -118,7 +118,7 @@ public class SettingFragment extends Fragment {
      * 广播注册
      */
     private void registerBroadcast() {
-        mUpdateReceiver = new UpdateReceiver(false);
+        mUpdateReceiver = new UpdateReceiver(true);
         mIntentFilter = new IntentFilter(UpdateReceiver.UPDATE_ACTION);
         getActivity().registerReceiver(mUpdateReceiver, mIntentFilter);
     }

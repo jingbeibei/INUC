@@ -1,5 +1,6 @@
 package com.inuc.inuc;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -46,6 +49,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private FlashPicture flashPicture;
     private Thread mSplashThread;
     private Handler mHandler;
+    private final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +70,14 @@ public class WelcomeActivity extends AppCompatActivity {
         state = pref.getInt("state", 0);
         token = pref.getString("token", "");
 
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        imei = tm.getDeviceId();//获取手机唯一标识
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            //申请WRITE_EXTERNAL_STORAGE权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        }
+
         try {
             PackageInfo info = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
             version = info.versionCode;//获取版本号
@@ -186,5 +196,21 @@ public class WelcomeActivity extends AppCompatActivity {
         };
 
     }
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        doNext(requestCode,grantResults);
+    }
+    private void doNext(int requestCode, int[] grantResults) {
+        if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted
+                TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                imei = tm.getDeviceId();//获取手机唯一标识
+            } else {
+                imei="123";
+                // Permission Denied
+            }
+        }
+    }
 }

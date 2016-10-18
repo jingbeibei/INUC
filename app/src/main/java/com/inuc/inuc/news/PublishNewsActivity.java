@@ -1,9 +1,13 @@
 package com.inuc.inuc.news;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+
 import com.inuc.inuc.R;
 import com.inuc.inuc.utils.ActivityCollector;
 import com.inuc.inuc.utils.ToolBase64;
@@ -24,7 +28,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 import okhttp3.Call;
@@ -42,6 +46,7 @@ public class PublishNewsActivity extends AppCompatActivity {
     private ImageView BackImage;
     private SharedPreferences pref;
     private String token;
+    private final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE=0;
 
 
     @Override
@@ -59,7 +64,12 @@ public class PublishNewsActivity extends AppCompatActivity {
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
         BarTitle = (TextView) findViewById(R.id.id_bar_title);
         BarTitle.setText("发布新闻");
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            //申请WRITE_EXTERNAL_STORAGE权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        }
         adapter = new MultiImageAdapter(this);
         gridView.setAdapter(adapter);
 
@@ -152,6 +162,20 @@ public class PublishNewsActivity extends AppCompatActivity {
 //                String base64Image = ToolBase64.bitmapToBase64(bitmap);
 //
 //                updateHeadImage(base64Image);
+            }
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        doNext(requestCode,grantResults);
+    }
+    private void doNext(int requestCode, int[] grantResults) {
+        if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted
+            } else {
+                // Permission Denied
             }
         }
     }

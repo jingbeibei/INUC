@@ -84,7 +84,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //        holder.setIsRecyclable(false);
         if (holder instanceof ItemViewHolder) {
 
-            News news = mData.get(position);
+            News news = mData.get(position-2);
             if (news == null) {
                 return;
             }

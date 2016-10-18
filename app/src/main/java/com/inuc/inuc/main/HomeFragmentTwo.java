@@ -174,7 +174,7 @@ public class HomeFragmentTwo extends Fragment implements SwipeRefreshLayout.OnRe
     private HomeRecyclerAdapter.OnItemClickListener mOnItemClickListener = new HomeRecyclerAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            News news = mAdapter.getItem(position);
+            News news = mAdapter.getItem(position-2);
             Intent intent = new Intent(view.getContext(), NewsDetailedActivity.class);
             intent.putExtra("id", news.getID() + "");
 

@@ -333,8 +333,8 @@ public class ImageSlideshow extends FrameLayout {
 //                        load(imageTitleBeanList.get(0).getImageUrl()).into(ivImage);
                 Picasso.with(context)
                         .load(imageTitleBeanList.get(0).getImageUrl())
-                        .placeholder(R.mipmap.ic_banner)
-                        .error(R.mipmap.ic_banner)
+                        .placeholder(R.mipmap.banner_error)
+                        .error(R.mipmap.banner_error)
                         .into(ivImage);
                 tvTitle.setText(imageTitleBeanList.get(0).getTitle());
             } else {
@@ -343,8 +343,8 @@ public class ImageSlideshow extends FrameLayout {
 //                        load(imageTitleBeanList.get(i - 1).getImageUrl()).into(ivImage);
                 Picasso.with(context)
                         .load(imageTitleBeanList.get(i - 1).getImageUrl())
-                        .placeholder(R.mipmap.ic_banner)
-                        .error(R.mipmap.ic_banner)
+                        .placeholder(R.mipmap.banner_error)
+                        .error(R.mipmap.banner_error)
                         .into(ivImage);
                 tvTitle.setText(imageTitleBeanList.get(i - 1).getTitle());
             }
