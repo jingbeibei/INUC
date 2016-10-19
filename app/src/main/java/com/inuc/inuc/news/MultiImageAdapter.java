@@ -126,7 +126,7 @@ public class MultiImageAdapter extends BaseAdapter {
                 //跳转到图片选择
                 MultiImageSelector.create(activity)
                         .showCamera(true) // 是否显示相机. 默认为显示
-                        .count(3) // 最大选择图片数量, 默认为9. 只有在选择模式为多选时有效
+                        .count(4) // 最大选择图片数量, 默认为9. 只有在选择模式为多选时有效
 //                        .single() // 单选模式
                          .multi() // 多选模式, 默认模式;
                         .origin(mImages) // 默认已选择图片. 只有在选择模式为多选时有效

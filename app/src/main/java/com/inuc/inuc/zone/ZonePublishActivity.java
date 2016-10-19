@@ -1,5 +1,6 @@
 package com.inuc.inuc.zone;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,17 +9,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.bumptech.glide.Glide;
 import com.inuc.inuc.R;
 import com.inuc.inuc.news.MultiImageAdapter;
 import com.inuc.inuc.utils.ActivityCollector;
+import com.inuc.inuc.utils.DialogUtils;
 import com.inuc.inuc.utils.ToolBase64;
 import com.inuc.inuc.utils.Urls;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -39,32 +41,38 @@ public class ZonePublishActivity extends AppCompatActivity {
     private ArrayList<String> mSelectPath;
     private MultiImageAdapter adapter;
     private GridView gridView;
-
+private EditText titleET;
     private EditText contentET;
     private String picCode = "";
-    private Button newsPublishBT;
+    private TextView newsPublishBT;
     private TextView BarTitle;
     private ImageView BackImage;
     private SharedPreferences pref;
     private String token;
-
+    private Dialog progressDialog;
+    private ImageView showImageIV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_publish_zone);
+        setContentView(R.layout.activity_publish_news);
         ActivityCollector.addActivity(this);
         pref = getSharedPreferences("data", MODE_PRIVATE);
         token = pref.getString("token", "");
+        progressDialog = DialogUtils.createProgressDialog(this);
 
         gridView = (GridView) findViewById(R.id.gridView);
-//        titleET = (EditText) findViewById(R.id.news_release_title_et);
+        titleET = (EditText) findViewById(R.id.news_release_title_et);
+        titleET.setVisibility(View.GONE);
         contentET = (EditText) findViewById(R.id.news_releasw_content_et);
-        newsPublishBT = (Button) findViewById(R.id.news_release_button);
+        newsPublishBT = (TextView) findViewById(R.id.bar_right_tv);
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
         BarTitle = (TextView) findViewById(R.id.id_bar_title);
-        BarTitle.setText("发说说");
+        showImageIV= (ImageView) findViewById(R.id.show_image);
 
+        BarTitle.setText("发说说");
+        newsPublishBT.setVisibility(View.VISIBLE);
+        newsPublishBT.setText("提交");
         adapter = new MultiImageAdapter(this);
         gridView.setAdapter(adapter);
 
@@ -103,6 +111,7 @@ public class ZonePublishActivity extends AppCompatActivity {
                     Log.i("图片2", picCode);
                 }
                 newsPublishBT.setClickable(false);
+                progressDialog.show();
                 newsPublishBT.setText("提交...");
                 OkHttpUtils.post().url(Urls.PublishTalkingUrl).addHeader("Authorization", token)
                         .addParams("contents", content)
@@ -112,15 +121,18 @@ public class ZonePublishActivity extends AppCompatActivity {
                             public void onError(Call call, Exception e, int id) {
                                 Toast.makeText(getApplicationContext(), "未知错误，请联系管理员", Toast.LENGTH_LONG).show();
                                 newsPublishBT.setText("提交");
+                                progressDialog.dismiss();
                                 newsPublishBT.setClickable(true);
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 if (Integer.parseInt(response) > 0) {
+                                    progressDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), "亲，发布成功，请等待审核！", Toast.LENGTH_LONG).show();
                                     finish();
                                 } else {
+                                    progressDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), "发布失败", Toast.LENGTH_LONG).show();
                                     newsPublishBT.setText("提交");
                                     newsPublishBT.setClickable(true);
@@ -130,7 +142,15 @@ public class ZonePublishActivity extends AppCompatActivity {
 
             }
         });
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showImageIV.setVisibility(View.VISIBLE);
+                Glide.with(ZonePublishActivity.this)
+                        .load(mSelectPath.get(position))
+                        .into(showImageIV);
+            }
+        });
     }
 
     @Override
@@ -143,18 +163,9 @@ public class ZonePublishActivity extends AppCompatActivity {
                 }
                 mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
                 StringBuilder sb = new StringBuilder();
-//                for (String p : mSelectPath) {
-//                    sb.append(p);
-//                    //sb.append("\n");
-//                }
                 //拿到图片数据后把images传过去
                 adapter = new MultiImageAdapter(this, mSelectPath);
                 gridView.setAdapter(adapter);
-//                Bitmap bitmap = BitmapFactory.decodeFile(sb.toString());
-//                headImage.setImageBitmap(bitmap);
-//                String base64Image = ToolBase64.bitmapToBase64(bitmap);
-//
-//                updateHeadImage(base64Image);
             }
         }
     }

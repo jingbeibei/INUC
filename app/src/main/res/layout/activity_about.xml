@@ -22,9 +22,25 @@
         android:gravity="center"
         android:text="爱中北"
         android:textSize="@dimen/text_size" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:gravity="center"-->
+        <!--android:textSize="17sp"-->
+        <!--android:text="爱中北技术部研发" />-->
+    <!--<TextView-->
+        <!--android:id="@+id/www_tv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="www.i-nuc.com/inuc"-->
+
+        <!--android:gravity="center"-->
+        <!--android:textColor="#0000ff"-->
+        <!--/>-->
 
     <ScrollView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:scrollbars="none"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -39,8 +55,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
 
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
+                android:paddingRight="18dp"
+                android:paddingLeft="18dp"
                 android:text="
 我们的声明：\n
 1.保护用户个人信息是我们的一项基本原则。\n
@@ -53,17 +69,25 @@
 息及其它验证信息。\n
 4.i-nuc将运用各种安全技术和程序建立完善的管理制度来保护您的个
 人信息，以避免遭受未经授权的访问、使用或披露。\n
-5.如有任何问题请与管理员联系。\n
+5.如有任何问题请与管理员联系(18603518513)。\n
 " />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:gravity="center"
+
+                android:text="爱中北技术部研发" />
+            <TextView
+                android:id="@+id/www_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="www.i-nuc.com/inuc"
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
-                android:textSize="17sp"
-                android:text="爱中北技术部研发" />
+                android:textColor="#0000ff"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

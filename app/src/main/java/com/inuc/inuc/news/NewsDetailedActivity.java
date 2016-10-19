@@ -3,8 +3,8 @@ package com.inuc.inuc.news;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -17,6 +17,11 @@ import com.inuc.inuc.utils.ActivityCollector;
 import com.inuc.inuc.utils.Urls;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 
@@ -31,7 +36,8 @@ public class NewsDetailedActivity extends AppCompatActivity {
     private TextView BarTitle;
     private ImageView BackImage;
     private TextView BarRight;
-
+    // 获取src路径的正则
+    private static final String IMGSRC_REG = "http:\"?(.*?)(\"|>|\\s+)";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class NewsDetailedActivity extends AppCompatActivity {
         content = (WebView) findViewById(R.id.news_content_web);
         BarTitle = (TextView) findViewById(R.id.id_bar_title);
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
-        BarRight= (TextView) findViewById(R.id.bar_right_tv);
+        BarRight = (TextView) findViewById(R.id.bar_right_tv);
         BarRight.setText("发布");
         BarRight.setVisibility(View.VISIBLE);
         OkHttpUtils.get().url(Urls.GetInfomationUrl)
@@ -65,7 +71,6 @@ public class NewsDetailedActivity extends AppCompatActivity {
                 });
 
 
-
         BarTitle.setText("校园新闻");
 
         BackImage.setOnClickListener(new View.OnClickListener() {
@@ -77,45 +82,40 @@ public class NewsDetailedActivity extends AppCompatActivity {
         BarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(NewsDetailedActivity.this,PublishNewsActivity.class);
+                Intent intent = new Intent(NewsDetailedActivity.this, PublishNewsActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     private void initWeb() {
-//        WebChromeClient m_chromeClient = new WebChromeClient() {
-//            @Override
-//            public void onShowCustomView(View view, CustomViewCallback callback) {
-//                // TODO Auto-generated method stub
-//            }
-//
-//            @Override
-//            public void onProgressChanged(WebView view, int newProgress) {
-//                // TODO Auto-generated method stub
-//                super.onProgressChanged(view, newProgress);
-//            }
-//        };
-//
-//        //视频设置
-//        content.setWebChromeClient(m_chromeClient);
-//        //	contentWebView.getSettings().setLoadsImagesAutomatically(true);
-//        content.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
-//        //		contentWebView.getSettings().setJavaScriptEnabled(true);
-//        content.getSettings().setDefaultTextEncodingName("utf-8");
-//        content.getSettings().setDefaultFontSize(18);
-//        content.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+
         WebSettings settings = content.getSettings();
         settings.setJavaScriptEnabled(true);
-        settings.setSupportZoom(false);
-        settings.setBuiltInZoomControls(false);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setDisplayZoomControls(false);
         if (contentString != null) {
             contentString = contentString.replace(";", "");
         }
         contentString = head + contentString + end;
         content.loadDataWithBaseURL(null, contentString, "text/html", "utf-8", null);
-
+        getImageUrl(contentString);
     }
+
+    private List<String> getImageUrl(String HTML) {
+        Matcher matcher = Pattern.compile(IMGSRC_REG).matcher(HTML);
+        List<String> listImgUrl = new ArrayList<String>();
+        String s = "";
+        while (matcher.find()) {
+            Log.i("图片路径", matcher.group());
+            s = s + matcher.group();
+            listImgUrl.add(matcher.group());
+        }
+        Log.i("图片路径", s);
+        return listImgUrl;
+    }
+
 }

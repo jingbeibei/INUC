@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -216,7 +217,14 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mCommentList = (LinearLayout) itemView.findViewById(R.id.comment_list);
             mBtnInput = (TextView) itemView.findViewById(R.id.btn_input_comment);
             mBtnInput.setOnClickListener(this);
-
+            //还是不要支持放大的好
+//            WebSettings settings = webView.getSettings();
+//            settings.setJavaScriptEnabled(true);
+//            settings.setSupportZoom(true);
+//            settings.setBuiltInZoomControls(true);
+//            settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+//            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//            settings.setDisplayZoomControls(true);
 
         }
 

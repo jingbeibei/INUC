@@ -1,7 +1,9 @@
 package com.inuc.inuc.main.setting;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +19,7 @@ public class AboutActivity extends AppCompatActivity {
     private TextView versionTV;
     private TextView  BarTitle;
     private ImageView backIV;
+    private TextView websiteTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,7 @@ public class AboutActivity extends AppCompatActivity {
         ActivityCollector.addActivity(this);
         BarTitle = (TextView)findViewById(R.id.id_bar_title);
         backIV = (ImageView) findViewById(R.id.id_back_arrow_image);
+        websiteTV= (TextView) findViewById(R.id.www_tv);
         BarTitle.setText("关于");
         versionTV= (TextView) findViewById(R.id.guanyuVersionnameTv);
         PackageInfo info = null;
@@ -40,6 +44,13 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ActivityCollector.removeActivity(AboutActivity.this);
+            }
+        });
+        websiteTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.i-nuc.com/inuc"));
+                startActivity(intent);
             }
         });
     }
