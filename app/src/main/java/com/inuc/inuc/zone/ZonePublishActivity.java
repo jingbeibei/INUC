@@ -41,7 +41,7 @@ public class ZonePublishActivity extends AppCompatActivity {
     private ArrayList<String> mSelectPath;
     private MultiImageAdapter adapter;
     private GridView gridView;
-private EditText titleET;
+    private EditText titleET;
     private EditText contentET;
     private String picCode = "";
     private TextView newsPublishBT;
@@ -68,7 +68,7 @@ private EditText titleET;
         newsPublishBT = (TextView) findViewById(R.id.bar_right_tv);
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
         BarTitle = (TextView) findViewById(R.id.id_bar_title);
-        showImageIV= (ImageView) findViewById(R.id.show_image);
+        showImageIV = (ImageView) findViewById(R.id.show_image);
 
         BarTitle.setText("发说说");
         newsPublishBT.setVisibility(View.VISIBLE);
@@ -92,7 +92,7 @@ private EditText titleET;
             public void onClick(View view) {
 //                String title = titleET.getText().toString();
                 String content = contentET.getText().toString();
-                if ( content.equals("")) {
+                if (content.equals("")) {
                     Toast.makeText(getApplicationContext(), "亲，内容不能为空！", Toast.LENGTH_LONG).show();
                     return;
                 }

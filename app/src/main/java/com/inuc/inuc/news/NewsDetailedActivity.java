@@ -110,7 +110,7 @@ public class NewsDetailedActivity extends AppCompatActivity {
         List<String> listImgUrl = new ArrayList<String>();
         String s = "";
         while (matcher.find()) {
-            Log.i("图片路径", matcher.group());
+            Log.i("图片路径", matcher.group().substring(0,matcher.group().length()-1));
             s = s + matcher.group();
             listImgUrl.add(matcher.group());
         }

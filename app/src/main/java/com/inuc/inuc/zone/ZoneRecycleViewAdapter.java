@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 
@@ -43,6 +46,8 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     String head = "<html><head></head><body>";
     String end = "</body></html>";
+    // 获取src路径的正则
+    private static final String IMGSRC_REG = "http:\"?(.*?)(\"|>|\\s+)";
 
     private boolean mShowFooter = true;
     private Context mContext;
@@ -107,7 +112,7 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
             this.position = position;
-            Log.i("@@@",position+"");
+            Log.i("@@@", position + "");
             String contentString = head + mData.get(position).getContents() + end;
 //            ((ViewHolder) holder).image_head.setImageResource(R.drawable.icon__head);
             Picasso.with(mContext).load(mData.get(position).getUserPictureUrl()).placeholder(R.mipmap.icon__head).error(R.mipmap.icon__head).into(((ViewHolder) holder).image_head);
@@ -115,7 +120,12 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             String date = mData.get(position).getPublishTime().toString().substring(0, 10) + " "
                     + mData.get(position).getPublishTime().toString().substring(11, 16);
             ((ViewHolder) holder).text_time.setText(date);
-            ((ViewHolder) holder).webView.loadDataWithBaseURL(null, contentString, "text/html", "utf-8", null);
+//            ((ViewHolder) holder).webView.loadDataWithBaseURL(null, contentString, "text/html", "utf-8", null);
+
+//            getImageUrl(contentString);
+            ImageAdapter adapter=new ImageAdapter(mContext, getImageUrl(contentString));
+            ((ViewHolder) holder).gridView.setAdapter(adapter);
+
             ((ViewHolder) holder).text_look_count.setText("浏览" + mData.get(position).getHits() + "次");
             if (mData.get(position).getPositive() == 0) {
                 ((ViewHolder) holder).text_final.setText("还没有人赞说说哦");
@@ -203,6 +213,7 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         public TextView text_final;//多少人觉得很赞
         LinearLayout mCommentList;
         TextView mBtnInput;
+        private MyGridView gridView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -210,6 +221,7 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             text_name = (TextView) itemView.findViewById(R.id.id_text_name);
             text_time = (TextView) itemView.findViewById(R.id.id_text_time);
             webView = (WebView) itemView.findViewById(R.id.id_webview);
+            gridView = (MyGridView) itemView.findViewById(R.id.gridView);
             text_look_count = (TextView) itemView.findViewById(R.id.id_text_look_count);
             image_support = (ImageView) itemView.findViewById(R.id.id_image_support);
             image_support.setOnClickListener(this);
@@ -218,13 +230,6 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mBtnInput = (TextView) itemView.findViewById(R.id.btn_input_comment);
             mBtnInput.setOnClickListener(this);
             //还是不要支持放大的好
-//            WebSettings settings = webView.getSettings();
-//            settings.setJavaScriptEnabled(true);
-//            settings.setSupportZoom(true);
-//            settings.setBuiltInZoomControls(true);
-//            settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-//            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//            settings.setDisplayZoomControls(true);
 
         }
 
@@ -423,8 +428,20 @@ public class ZoneRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }, 300);
         return dialog;
     }
+    //html解析
+    private ArrayList<String> getImageUrl(String HTML) {
+        Matcher matcher = Pattern.compile(IMGSRC_REG).matcher(HTML);
+       ArrayList<String> listImgUrl = new ArrayList<String>();
+        String s = "";
+        while (matcher.find()) {
+            s=matcher.group();
 
+            Log.i("图片路径", matcher.group().substring(0,matcher.group().length()-1));
 
-
+            listImgUrl.add(s.substring(0,s.length()-1));
+        }
+//        Log.i("图片路径", s);
+        return listImgUrl;
+    }
 
 }
