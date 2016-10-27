@@ -31,4 +31,5 @@ public class Urls {
     public final static String AddTalkingPoint=BaseUrl+"AddTalkingPoint?";
     public final static String AddTalkingRemark=BaseUrl+"AddTalkingRemark?";
     public final static String GetOAMeetingsUrl=BaseUrl+"GetOAMeetings?";
+    public final static String UploadImageUrl="http://www.i-nuc.com/inuc/File/UploadImage";
 }

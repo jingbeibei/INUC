@@ -49,7 +49,13 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:visibility="gone"
         android:layout_marginTop="10dp" />
-
+<TextView
+    android:id="@+id/content_tv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="17sp"
+    android:text="测试"
+    />
     <com.inuc.inuc.zone.MyGridView
         android:id="@+id/gridView"
         android:layout_width="wrap_content"
@@ -102,13 +108,6 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/id_text_support_number"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center_vertical"
-            android:text="12" />
 
         <TextView
             android:id="@+id/id_final"

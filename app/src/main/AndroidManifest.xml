@@ -51,6 +51,7 @@
         <activity android:name=".zone.ZoneMainActivity" />
         <activity android:name=".zone.ZonePublishActivity" />
         <activity android:name=".meetings.OAMeetingsListActivity"></activity>
+        <activity android:name=".zone.imagebrowse.view.ImageBrowseActivity"></activity>
     </application>
 
 </manifest>

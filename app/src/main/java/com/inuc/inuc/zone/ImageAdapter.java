@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.inuc.inuc.R;
+import com.inuc.inuc.zone.imagebrowse.view.ImageBrowseActivity;
 
 import java.util.ArrayList;
 
@@ -22,11 +23,20 @@ public class ImageAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<String> mImages;
+    int width=0;
+    int height=0;
 
     public ImageAdapter(Context context, ArrayList images) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.mImages = images;
+    }
+    public ImageAdapter(Context context, ArrayList images,int width,int height) {
+        this.context = context;
+        this.inflater = LayoutInflater.from(context);
+        this.mImages = images;
+        this.width=width;
+        this.height=height;
     }
 
     @Override
@@ -48,12 +58,16 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ImageAdapter.ViewHolder holder = null;
         if (null == convertView) {
             convertView = inflater.inflate(R.layout.item_image, null);
             holder = new ImageAdapter.ViewHolder();
             holder.ivIcon = (ImageView) convertView.findViewById(R.id.item_image);
+            if (height!=0) {
+                holder.ivIcon.getLayoutParams().height = height;
+                holder.ivIcon.getLayoutParams().width = width;
+            }
             convertView.setTag(holder);
         } else {
             holder = (ImageAdapter.ViewHolder) convertView.getTag();
@@ -65,7 +79,12 @@ public class ImageAdapter extends BaseAdapter {
                         .error(R.mipmap.banner_error)
                         .placeholder(R.mipmap.banner_error)
                         .into(holder.ivIcon);
-
+        holder.ivIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageBrowseActivity.startActivity(context,mImages,position);
+            }
+        });
         return convertView;
     }
 

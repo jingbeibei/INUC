@@ -5,4 +5,5 @@
     <dimen name="text_size">18sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="bottom_title_size">10sp</dimen>
+
 </resources>

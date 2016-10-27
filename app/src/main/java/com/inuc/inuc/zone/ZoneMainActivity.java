@@ -51,7 +51,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
     private LinearLayoutManager linearLayoutManager;
     private SwipeRefreshLayout refreshLayout;
     private List<ZoneBean> zoneBeanList ;
-    private ZoneRecycleViewAdapter zoneRecycleAdapter;
+    private ZoneRecycleViewAdapterTwo zoneRecycleAdapter;
     private TextView BarTitle;
 
 
@@ -93,7 +93,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        zoneRecycleAdapter = new ZoneRecycleViewAdapter(mContext.getSharedPreferences("data",MODE_APPEND), mRecyclerView,zoneBeanList,mContext,new CustomTagHandler(mContext,new CustomTagHandler.OnCommentClickListener(){
+        zoneRecycleAdapter = new ZoneRecycleViewAdapterTwo(mContext.getSharedPreferences("data",MODE_APPEND), mRecyclerView,zoneBeanList,mContext,new CustomTagHandler(mContext,new CustomTagHandler.OnCommentClickListener(){
 
             @Override
             public void onCommentatorClick(View view, User commentator) {
@@ -149,7 +149,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
         if (pageIndex == 1) {
             showProgress();
         }
-        loadDate(pageIndex,8,1,20);
+        loadDate(pageIndex,Urls.PAZE_SIZE,1,20);
     }
 
     public void showProgress() {
@@ -163,7 +163,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
 
 
 
-    private ZoneRecycleViewAdapter.OnItemClickListener mOnItemClickListener = new ZoneRecycleViewAdapter.OnItemClickListener() {
+    private ZoneRecycleViewAdapterTwo.OnItemClickListener mOnItemClickListener = new ZoneRecycleViewAdapterTwo.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
             //进入单个微空间；
@@ -248,7 +248,7 @@ public class ZoneMainActivity extends Activity implements View.OnClickListener, 
         }
         zoneBeanList.addAll(newsList);
         if (pageIndex == 1) {
-            if (newsList.size() < 10) {
+            if (newsList.size() < Urls.PAZE_SIZE) {
                 zoneRecycleAdapter.isShowFooter(false);
             }
             zoneRecycleAdapter.setmDate(zoneBeanList);

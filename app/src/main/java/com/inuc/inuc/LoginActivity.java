@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         EditText editText= (EditText) dialogview.findViewById(R.id.dialog);
                         String s=editText.getText().toString();
-                        Log.i("haohao",s);
+
                         OkHttpUtils.post().url(Urls.RecoveryPasswordUrl)
                         .addParams("mobilePhone",s).build()
                         .execute(new StringCallback() {
