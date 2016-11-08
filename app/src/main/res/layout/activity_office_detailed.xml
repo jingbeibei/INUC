@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".news.NewsDetailedActivity">
+    tools:context=".office.OADetailedActivity">
 
     <include layout="@layout/toolbar_mybar_image"></include>
 
@@ -43,18 +43,5 @@
             </WebView>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/news_release_fab_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:src="@mipmap/release"
-
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:layout_behavior="com.inuc.inuc.news.ScrollAwareFABBehaviorDefault" />
 
 </android.support.design.widget.CoordinatorLayout>

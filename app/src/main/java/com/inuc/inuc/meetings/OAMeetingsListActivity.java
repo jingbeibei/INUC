@@ -70,17 +70,10 @@ public class OAMeetingsListActivity extends AppCompatActivity implements SwipeRe
         c.setTime(today);
         year = c.get(Calendar.YEAR);//得到当前年份
         weekNumber = WeekUtil.getWeekOfYear(today);//得到当前时间所在周数
-//        FirstDayOfWeek=sdf.format(WeekUtil.getFirstDayOfWeek(year, weekNumber));//得到当前周数的第一天
-//        LastDayOfWeek=sdf.format(WeekUtil.getLastDayOfWeek(year, weekNumber));//得到当前周数的最后一天
         WeekNumberOfYear = WeekUtil.getMaxWeekNumOfYear(year);//得到当前年份的周数
 
         initView();
 //        onRefresh();
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(new Date());
-//        Log.d("第几周", c.get(Calendar.WEEK_OF_YEAR) + "");
-//        Log.d("哪一年", c.get(Calendar.YEAR) + "");
-//        Log.d("哪一年", getWeekNumByYear(2016) + "");
 
         // 初始化控件
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -117,11 +110,11 @@ public class OAMeetingsListActivity extends AppCompatActivity implements SwipeRe
 
     private void initView() {
 
-//        BarRight = (TextView) findViewById(R.id.bar_right_tv);
-//        BarRight.setText("发布");
-//        BarRight.setVisibility(View.INVISIBLE);
         DateTime = (TextView) findViewById(R.id.date_time_tv);
-
+        weekNumber = WeekUtil.getWeekOfYear(today);//得到当前时间所在周数
+        FirstDayOfWeek = sdf.format(WeekUtil.getFirstDayOfWeek(year, weekNumber));//得到当前周数的第一天
+        LastDayOfWeek = sdf.format(WeekUtil.getLastDayOfWeek(year, weekNumber));//得到当前周数的最后一天
+        DateTime.setText(FirstDayOfWeek.substring(0, 10) + "至" + LastDayOfWeek.substring(0, 10));
         BackImage = (ImageView) findViewById(R.id.id_back_arrow_image);
 
         mSwipeRefreshWidget = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_widget);
