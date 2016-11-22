@@ -1,6 +1,7 @@
 package com.inuc.inuc.news;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -155,5 +156,11 @@ public class NewsDetailedActivity extends AppCompatActivity {
 // 启动分享GUI
         oks.show(this);
     }
+    protected void onPause() {
+        super.onPause();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            content.onPause(); // 暂停网页中正在播放的视频
+        }
+    }
 }
