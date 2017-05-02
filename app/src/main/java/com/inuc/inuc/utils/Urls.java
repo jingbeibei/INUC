@@ -6,7 +6,8 @@ package com.inuc.inuc.utils;
 public class Urls {
     public final static int PAZE_SIZE = 15;
 
-    public final static String BaseUrl = "http://www.i-nuc.com/inuc/api/interface/";
+//    public final static String BaseUrl = "http://www.i-nuc.com/inuc/api/interface/";
+    public final static String BaseUrl =" http://59.48.248.41:1020/iNUC/api/interface/";
     public final static String AppLoginUrl = BaseUrl + "AppLogin?";
     public final static String GetLastFlashPictureUrl=BaseUrl+"GetLastFlashPicture?";
     public final static String ValidateUserUrl=BaseUrl+"ValidateUser?";//验证用户名和密码
